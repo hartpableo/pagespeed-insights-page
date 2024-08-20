@@ -11,8 +11,8 @@ const SpeedIndex = ({ speedIndex }) => {
 
   return (
     <>
-      <p className={'font-bold mb-1'}>Speed Index</p>
-      <p className={`display-3 font-bold ${scoreColor}`}>{speedIndex}</p>
+      <p className={'fw-bold mb-1'}>Speed Index</p>
+      <p className={`display-3 fw-bold ${scoreColor}`}>{speedIndex}</p>
 
       {scoreColor === 'text-success' && (
         <p className={'text-sm'}>Great job! Your website is fast.</p>
@@ -27,7 +27,7 @@ const SpeedIndex = ({ speedIndex }) => {
       )}
 
       {(scoreColor === 'text-danger' || scoreColor === 'text-warning') && (
-        <p className={'font-bold'}>
+        <p className={'fw-bold'}>
           Contact us and we will help you improve your website health!
         </p>
       )}

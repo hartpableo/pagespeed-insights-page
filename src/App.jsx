@@ -72,6 +72,8 @@ function App() {
       setMobileResults({ mobileMetrics });
       setDesktopResults({ desktopMetrics });
 
+      console.log('Mobile Lighthouse Metrics:', mobileMetrics);
+      console.log('Desktop Lighthouse Metrics:', desktopMetrics);
     } catch (error) {
       setIsError(true);
       console.error('Error fetching website scores:', error);
@@ -103,9 +105,9 @@ function App() {
 
         {loading && <LoadingSpinner />}
 
-        {finalURL && (
+        {finalURL && !loading && (
           <p className="mt-4 mb-2">
-            Results for: <strong className="font-bold">{finalURL}</strong>
+            Results for: <strong className="fw-bold">{finalURL}</strong>
           </p>
         )}
 
@@ -134,6 +136,10 @@ function App() {
                 </ul>
               </div>
             )}
+
+            <div className="col-12 mt-5">
+              <p>More data can be displayed, check out the console logs.</p>
+            </div>
           </div>
         )}
 
