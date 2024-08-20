@@ -65,8 +65,8 @@ function App() {
       setMobileResults({ mobileMetrics });
       setDesktopResults({ desktopMetrics });
 
-      console.log('Mobile Lighthouse Metrics:', mobileMetrics);
-      console.log('Desktop Lighthouse Metrics:', desktopMetrics);
+      console.log('Mobile Lighthouse Metrics:', mobileLighthouse);
+      console.log('Desktop Lighthouse Metrics:', desktopLighthouse);
     } catch (error) {
       setIsError(true);
       console.error('Error fetching website scores:', error);
