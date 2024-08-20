@@ -2,10 +2,11 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://hartpableo.github.io/pagespeed-insights-page",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint vite-project",
