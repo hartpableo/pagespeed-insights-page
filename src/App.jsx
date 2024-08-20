@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import LoadingSpinner from "./Components/LoadingSpinner.jsx";
 import { API_URL } from "./helpers/constants.js";
-import SpeedIndex from "./Components/SpeedIndex.jsx";
 
 function App() {
   const [websiteURL, setWebsiteURL] = useState('');
@@ -10,8 +9,6 @@ function App() {
   const [desktopResults, setDesktopResults] = useState(null);
   const [isError, setIsError] = useState(false);
   const [finalURL, setFinalURL] = useState('');
-  const [mobileSpeedIndexScore, setMobileSpeedIndexScore] = useState(null);
-  const [desktopSpeedIndexScore, setDesktopSpeedIndexScore] = useState(null);
 
   const requestUrl = (url, strategy) => {
     return `${API_URL}?url=${url}&strategy=${strategy}&category=performance&category=best-practices&category=seo&category=accessibility`;
@@ -34,8 +31,6 @@ function App() {
     setIsError(false);
     setMobileResults(null);
     setDesktopResults(null);
-    setMobileSpeedIndexScore(null);
-    setDesktopSpeedIndexScore(null);
 
     try {
       // Fetch mobile strategy
@@ -51,7 +46,6 @@ function App() {
         'SEO': mobileLighthouse.categories.seo.score * 100,
         'Accessibility': mobileLighthouse.categories.accessibility.score * 100,
       };
-      setMobileSpeedIndexScore(mobileLighthouse.audits['speed-index'].score);
 
       // Fetch desktop strategy
       const desktopResponse = await fetch(requestUrl(websiteURL, 'desktop'));
@@ -66,7 +60,6 @@ function App() {
         'SEO': desktopLighthouse.categories.seo.score * 100,
         'Accessibility': desktopLighthouse.categories.accessibility.score * 100,
       };
-      setDesktopSpeedIndexScore(desktopLighthouse.audits['speed-index'].score);
 
       setFinalURL(mobileLighthouse.finalUrl); // Assuming final URL is the same for both
       setMobileResults({ mobileMetrics });
@@ -116,7 +109,6 @@ function App() {
             {mobileResults && (
               <div className="col-6">
                 <h3><strong>Mobile</strong> Lighthouse Metrics:</h3>
-                {mobileSpeedIndexScore !== null && <SpeedIndex speedIndex={mobileSpeedIndexScore}/>}
                 <ul className={'mt-2'}>
                   {Object.entries(mobileResults.mobileMetrics).map(([metric, value]) => (
                     <li key={metric}>{metric}: <strong>{value}</strong></li>
@@ -128,7 +120,6 @@ function App() {
             {desktopResults && (
               <div className="col-6">
                 <h3><strong>Desktop</strong> Lighthouse Metrics:</h3>
-                {desktopSpeedIndexScore !== null && <SpeedIndex speedIndex={desktopSpeedIndexScore}/>}
                 <ul className={'mt-2'}>
                   {Object.entries(desktopResults.desktopMetrics).map(([metric, value]) => (
                     <li key={metric}>{metric}: <strong>{value}</strong></li>
